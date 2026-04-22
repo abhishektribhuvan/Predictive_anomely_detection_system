@@ -54,7 +54,7 @@ with col3:
         try:
             res = requests.get(f"{API_URL}/api/action3_distribution", timeout=10)
             if res.status_code == 200:
-                st.image(res.content, caption="1000-Reading Bell Curves")
+                st.image(res.content, caption="Vibration Magnitude Distribution √(x² + y² + z²)")
             else:
                 st.error(f"Backend error: {res.status_code}")
         except requests.exceptions.ConnectionError:

@@ -95,7 +95,7 @@ def get_live_data():
             
     return {"live": latest_reading, "averages": averages}
 
-# --- ACTION 3: GET DISTRIBUTION GRAPH ---
+# --- ACTION 3: GET DISTRIBUTION GRAPH (Magnitude) ---
 @app.get("/api/action3_distribution")
 def get_distribution():
     if not os.path.exists(CSV_FILE):
@@ -103,18 +103,22 @@ def get_distribution():
 
     df = pd.read_csv(CSV_FILE)
     
-    sns.set_theme(style="darkgrid")
-    fig, axes = plt.subplots(3, 1, figsize=(10, 12))
+    # Compute magnitude: sqrt(x^2 + y^2 + z^2)
+    df['magnitude'] = np.sqrt(df['x']**2 + df['y']**2 + df['z']**2)
     
-    for i, axis in enumerate(['x', 'y', 'z']):
-        sns.histplot(df[axis], kde=True, ax=axes[i], color=['red', 'green', 'blue'][i])
-        axes[i].set_title(f"Normal Distribution: {axis.upper()}-Axis")
-        axes[i].axvline(df[axis].mean(), color='black', linestyle='--', label="Mean")
-        axes[i].legend()
+    sns.set_theme(style="darkgrid")
+    fig, ax = plt.subplots(figsize=(10, 5))
+    
+    sns.histplot(df['magnitude'], kde=True, ax=ax, color='#6C63FF', edgecolor='white', linewidth=0.5)
+    ax.set_title("Normal Distribution: Vibration Magnitude  √(x² + y² + z²)", fontsize=14, fontweight='bold')
+    ax.set_xlabel("Magnitude", fontsize=12)
+    ax.set_ylabel("Frequency", fontsize=12)
+    ax.axvline(df['magnitude'].mean(), color='red', linestyle='--', linewidth=2, label=f"Mean: {df['magnitude'].mean():.2f}")
+    ax.legend(fontsize=11)
 
     plt.tight_layout()
     buf = io.BytesIO()
-    plt.savefig(buf, format="png")
+    plt.savefig(buf, format="png", dpi=120)
     plt.close()
     buf.seek(0)
     
