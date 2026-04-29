@@ -2,7 +2,7 @@ import streamlit as st
 import requests
 
 st.set_page_config(page_title="Motor Diagnostic UI", layout="wide")
-st.title("⚙️ B2B Motor Diagnostic Dashboard")
+st.title("Machine maintance System")
 
 API_URL = "http://127.0.0.1:8000"
 
@@ -37,7 +37,7 @@ with col3:
         try:
             res = requests.get(f"{API_URL}/api/action3_distribution", timeout=10)
             if res.status_code == 200:
-                st.image(res.content, caption="Vibration Magnitude Distribution √(x² + y² + z²)")
+                st.image(res.content, caption="Vibration Distribution for X,Y and Z axis")
             else:
                 st.error(f"Backend error: {res.status_code}")
         except requests.exceptions.ConnectionError:

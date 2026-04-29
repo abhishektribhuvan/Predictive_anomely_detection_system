@@ -148,7 +148,7 @@ def get_distribution():
 
         sns.histplot(data, kde=True, ax=ax, color=color, edgecolor='white', linewidth=0.5, bins=40)
         ax.set_title(f"Distribution: {title}\n(μ={mu:.2f}, σ={sigma:.2f})", fontsize=13, fontweight='bold')
-        ax.set_xlabel("Sensor Value", fontsize=11)
+        ax.set_xlabel("acceleration (m/s^2)", fontsize=11)
         ax.set_ylabel("Frequency", fontsize=11)
 
         # Mean line
@@ -255,4 +255,4 @@ def detect_anomaly():
         "overall_anomaly": overall_anomaly,
         "threshold": 3.0,
         "history": zscore_history,   # full rolling window for charting
-    }
+    }
