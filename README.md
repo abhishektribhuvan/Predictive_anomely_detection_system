@@ -79,6 +79,11 @@ streamlit run web.py
 ```
 
 ---
+Web_page_screenshots
+<img width="1919" height="822" alt="Screenshot 2026-04-29 103009" src="https://github.com/user-attachments/assets/5f3ef660-1dbc-4f63-acc2-a7fcafeb7ade" />
+<img width="1684" height="668" alt="Screenshot 2026-04-29 103319" src="https://github.com/user-attachments/assets/1e320ffb-1fee-4427-aaa5-87553b18a6a4" />
+<img width="1677" height="689" alt="Screenshot 2026-04-29 103623" src="https://github.com/user-attachments/assets/462de027-c84b-4b8a-b8a3-39bc6e90329c" />
+
 
 ## 🗺️ Future Roadmap
 While currently functional and accurate for Gaussian data, planned architecture upgrades include:
